@@ -137,6 +137,8 @@ public abstract class Axis<T> extends AbstractData<T> implements Component {
     private Object interval;
 
     private Number minInterval;
+	private Boolean triggerEvent;
+	private Object eventData;
 
     public Boolean scale() {
         return this.scale;
@@ -547,4 +549,24 @@ public abstract class Axis<T> extends AbstractData<T> implements Component {
         this.minInterval = minInterval;
         return (T) this;
     }
+    /**
+     * 鼠标事件
+     *
+     * @param triggerEvent
+     * @return
+     */
+    public Axis triggerEvent(Boolean triggerEvent) {
+    	this.triggerEvent = triggerEvent;
+    	return this;
+    }
+    /**
+     * 鼠标事件自定义数据
+     *
+     * @param eventData
+     * @return
+     */
+	public Axis eventData(Object eventData) {
+		this.eventData = eventData;
+		return this;
+	}
 }
