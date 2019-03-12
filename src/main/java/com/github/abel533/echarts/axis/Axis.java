@@ -24,16 +24,18 @@
 
 package com.github.abel533.echarts.axis;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.github.abel533.echarts.AbstractData;
 import com.github.abel533.echarts.Component;
 import com.github.abel533.echarts.code.AxisType;
 import com.github.abel533.echarts.code.X;
 import com.github.abel533.echarts.code.Y;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * 坐标轴
@@ -138,7 +140,7 @@ public abstract class Axis<T> extends AbstractData<T> implements Component {
 
     private Number minInterval;
 	private Boolean triggerEvent;
-	private Object eventData;
+	private List eventData;
 
     public Boolean scale() {
         return this.scale;
@@ -565,8 +567,14 @@ public abstract class Axis<T> extends AbstractData<T> implements Component {
      * @param eventData
      * @return
      */
-	public Axis eventData(Object eventData) {
-		this.eventData = eventData;
-		return this;
-	}
+	public T eventData(Object... values) {
+        if (values == null || values.length == 0) {
+            return (T) this;
+        }
+        if (this.eventData == null) {
+        	eventData = new ArrayList<Object>();
+        }
+        this.eventData.addAll(Arrays.asList(values));
+        return (T) this;
+    }
 }

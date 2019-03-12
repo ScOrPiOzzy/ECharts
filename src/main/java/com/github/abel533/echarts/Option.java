@@ -201,6 +201,8 @@ public class Option implements Serializable {
      * 雷达图
      */
     private Radar radar;
+    
+    private Object params;
 
     public List<VisualMap> visualMap() {
         if (this.visualMap == null) {
@@ -1046,6 +1048,11 @@ public class Option implements Serializable {
     public Option radar(Radar radar) {
         this.radar = radar;
         return this;
+    }
+
+    public Option params(Object params) {
+    	this.params = params;
+    	return this;
     }
 
     /**
